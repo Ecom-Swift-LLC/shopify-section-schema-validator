@@ -1,0 +1,75 @@
+<section class="hero-banner" style="--hero-height: {{ section.settings.height }}px">
+  {%- if section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 1600 | image_tag:
+      loading: 'eager',
+      alt: section.settings.image.alt | default: section.settings.title,
+      class: 'hero-banner__image'
+    }}
+  {%- endif -%}
+
+  <div class="hero-banner__content">
+    {%- if section.settings.title != blank -%}
+      <h2 class="hero-banner__title">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'button' and block.settings.link != blank -%}
+        <a class="button button--{{ section.settings.button_style }}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          {{ block.settings.label | escape }}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": "section",
+  "class": "hero-banner-section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Summer collection" },
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 480
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "outline", "label": "Outline" }
+      ],
+      "default": "solid"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop now" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "Hero banner",
+      "settings": { "title": "Summer collection", "button_style": "solid" },
+      "blocks": [{ "type": "button" }]
+    }
+  ]
+}
+{% endschema %}

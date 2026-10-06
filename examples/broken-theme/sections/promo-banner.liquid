@@ -1,0 +1,23 @@
+<div class="promo-banner">
+  {{ section.settings.message }}
+</div>
+
+{% schema %}
+{
+  "name": "Promo banner with a very long name that breaks the limit",
+  "settings": [
+    { "type": "text", "id": "message", "label": "Message" },
+    { "type": "text", "id": "message", "label": "Message again" },
+    { "type": "select", "id": "position", "label": "Position" },
+    { "type": "range", "id": "padding", "label": "Padding", "min": 0, "max": 80 },
+    { "type": "colour", "id": "tint", "label": "Tint" }
+  ],
+  "blocks": [
+    { "type": "link", "name": "Link" },
+    { "type": "link", "name": "Link again" }
+  ],
+  "presets": [
+    { "name": "Default", "settings": { "mesage": "Free shipping" } }
+  ]
+}
+{% endschema %}

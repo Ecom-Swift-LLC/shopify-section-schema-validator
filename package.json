@@ -1,0 +1,26 @@
+{
+  "name": "shopify-section-schema-validator",
+  "version": "1.0.0",
+  "description": "Zero-dependency CLI that checks Shopify theme section and block {% schema %} tags for JSON errors, missing ids, duplicate types, invalid settings and documented limits.",
+  "main": "src/validate.js",
+  "bin": {
+    "sscv": "bin/validate.js"
+  },
+  "scripts": {
+    "test": "node --test test/validate.test.js"
+  },
+  "keywords": [
+    "shopify",
+    "shopify-theme",
+    "liquid",
+    "section-schema",
+    "theme-editor",
+    "linter",
+    "ecommerce"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Ecom Swift LLC <support@ecomswiftllc.com>",
+  "license": "MIT"
+}
